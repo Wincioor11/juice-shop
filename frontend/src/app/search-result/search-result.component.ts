@@ -7,7 +7,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { ActivatedRoute, Router } from '@angular/router'
 import { ProductService } from '../Services/product.service'
 import { BasketService } from '../Services/basket.service'
-import { AfterViewInit, Component, NgZone, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core'
+import { AfterViewInit, Component, NgZone, OnDestroy, ViewChild, ChangeDetectorRef, SecurityContext } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { forkJoin, Subscription } from 'rxjs'
 import { MatTableDataSource } from '@angular/material/table'
@@ -22,6 +22,7 @@ import { faCartPlus, faEye } from '@fortawesome/free-solid-svg-icons'
 import { Product } from '../Models/product.model'
 import { QuantityService } from '../Services/quantity.service'
 import { DeluxeGuard } from '../app.guard'
+import { SafeHtmlPipe } from 'ngx-spinner/lib/safe-html.pipe'
 
 library.add(faEye, faCartPlus)
 dom.watch()
@@ -149,7 +150,9 @@ export class SearchResultComponent implements OnDestroy, AfterViewInit {
         this.io.socket().emit('verifyLocalXssChallenge', queryParam)
       }) // vuln-code-snippet hide-end
       this.dataSource.filter = queryParam.toLowerCase()
-      this.searchValue = this.sanitizer.bypassSecurityTrustHtml(queryParam) // vuln-code-snippet vuln-line localXssChallenge xssBonusChallenge
+      // this.searchValue = this.sanitizer.bypassSecurityTrustHtml(queryParam) // vuln-code-snippet vuln-line localXssChallenge xssBonusChallenge
+      this.searchValue = this.sanitizer.sanitize(SecurityContext.NONE,queryParam) // vuln-code-snippet vuln-line localXssChallenge xssBonusChallenge
+      console.log('SUPAAAAA')
       this.gridDataSource.subscribe((result: any) => {
         if (result.length === 0) {
           this.emptyState = true
