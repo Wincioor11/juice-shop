@@ -252,3 +252,35 @@
   securityQuestion:
     id: 10
     answer: "Used Ship Emporium" # https://monkeyisland.fandom.com/wiki/Stan_S._Stanman
+-
+  email: mwinc
+  username: mwinc
+  password: '877f4533ae3b9d0e96753c98f60e5133b0a30df239a965fad88e3521dc2f78ea'
+  key: mwinc
+  role: 'customer'
+  address:
+    - fullName: 'Mike Winciorek'
+      mobileNum: 888111999
+      zipCode: '0662'
+      streetAddress: '0662 Koszykowa'
+      city: 'Warsaw'
+      state: 'Mazovian'
+      country: 'Poland'
+  card:
+    - fullName: 'Mike Winciorek'
+      cardNum: 4716190007394444
+      expMonth: 1
+      expYear: 2090
+    - fullName: 'Mike Winciorek'
+      cardNum: 4024007100648333
+      expMonth: 1
+      expYear: 2091 
+-
+  email: jkob
+  username: jkob
+  password: '5b643b94fb61644a11f6a4d8cada5ec7dd213780ac1faa53c3870b2b4e4ca6b0'
+  key: jkob
+  role: 'admin'
+  securityQuestion:
+    id: 11
+    answer: "Just guess it bro :)"
